@@ -4,17 +4,12 @@
   {% include meta.html %}
   {% include fonts.html %}
 
-  <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
   <link rel="shortcut icon" href="{{ site.favicon }}">
-  <script src="../script/gitalk.min.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
-  <script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  <script src="{{ site.baseurl }}/script/gitalk.min.js"></script>
+  <script src="{{ site.baseurl }}/script/feather.min.js"></script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
