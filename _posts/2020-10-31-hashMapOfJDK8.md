@@ -124,14 +124,14 @@ static final int hash(Object key) {
 // jdk1.7的源码，jdk1.8没有这个方法，但是实现原理一样的
 static int indexFor(int h, int length) {
 	/**
-    * 由于取模计算消耗较大, 这里可以用 h & (length-1) 代替 (h % length). 
-    * 此处就是数组长度是 2 的幂次的好处, 恰好满足这个规律, 非常巧妙.
-    * /
+     * 由于取模计算消耗较大, 这里可以用 h & (length-1) 代替 (h % length). 
+     * 此处就是数组长度是 2 的幂次的好处, 恰好满足这个规律, 非常巧妙.
+     */
 	return h & (length-1);
 }
 ```
 
-上面的 `hash()` 方法: (h = key.hashCode()) ^ (h >>> 16). 首先计算 key 的 hashCode(int_32), 然后和 hashCode 的高 16bit 异或计算, 
+上面的 `hash()` 方法: `(h = key.hashCode()) ^ (h >>> 16)`. 首先计算 key 的 hashCode(int_32), 然后和 hashCode 的高 16bit 异或计算, 
 当数组的长度较小, 也可保证高低位都参与到计算中, 同时不会有大的开销. 如下图:
 
 ![hash 的计算与索引的确定过程举例](https://pic2.zhimg.com/8e8203c1b51be6446cda4026eaaccf19_r.jpg)
