@@ -323,7 +323,7 @@ public class HashMapInfiniteLoop {
 那么 JDK8 会不会发生呢? 由上面的分析, 主要原因是新链表的节点顺序与原链表是相反的, 所以需要保证扩容后的链表中, 节点顺序较原来相同, 就
 不会发生循环问题.
 
-### 参考
+### 三. 参考
 
 * [Java 8系列之重新认识HashMap](https://zhuanlan.zhihu.com/p/21673805) 2016
 * [为什么HashTable的桶会取一个素数](https://blog.csdn.net/liuqiyao_01/article/details/14475159) 2013
