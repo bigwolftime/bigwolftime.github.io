@@ -277,7 +277,7 @@ key1(hash) 对应的第5位与 (n - 1) 的第5位做按位与运算, 如果是0,
 ```java
 public class HashMapInfiniteLoop {
 
-    private static HashMap<Integer,String> map = new HashMap<Integer,String>(2，0.75f);
+    private static HashMap<Integer,String> map = new HashMap<Integer,String>(2, 0.75f);
 
     public static void main(String[] args) {
         map.put(5, "C");
@@ -314,7 +314,7 @@ public class HashMapInfiniteLoop {
 
 ![](https://zonheng.net/rehash_loop_2.jpg?imageView2/2/w/650)
 
-5. `e.next = newTable[i]`. 导致 key(3).next 指向了 key(7), 由于此前 key(3) 已经指向了 key(7), 所以此处链表有了环. 如图
+5. `e.next = newTable[i]`. 导致 key(3).next 指向了 key(7), 由于此前 key(7) 已经指向了 key(3), 所以此处链表有了环. 如图
 
 ![环形链表](https://zonheng.net/rehash_loop_3.jpg?imageView2/2/w/650)
 
