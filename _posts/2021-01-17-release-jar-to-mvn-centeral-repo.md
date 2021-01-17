@@ -99,19 +99,21 @@ toc: true
 1. 需要安装 gpg 工具, 安装过程略.
 2. 生成密钥对 `gpg --gen-key`, 按提示生成即可;
 3. 使用 `gpg --list-keys` 命令可查看已生成的密钥对;
-```shell
-$ gpg --list-keys
 
-gpg: checking the trustdb
-gpg: marginals needed: 3  completes needed: 1  trust model: pgp
-gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
-gpg: next trustdb check due at 2023-01-17
----------------------------------
-pub   rsa2048 2021-01-17 [SC] [expires: 2023-01-17]
-      YourPublicKey
-uid           [ultimate] yourUserName <yourEmail>
-sub   rsa2048 2021-01-17 [E] [expires: 2023-01-17]
-```
+   ```shell
+   $ gpg --list-keys
+   
+   gpg: checking the trustdb
+   gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+   gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+   gpg: next trustdb check due at 2023-01-17
+   ---------------------------------
+   pub   rsa2048 2021-01-17 [SC] [expires: 2023-01-17]
+         YourPublicKey
+   uid           [ultimate] yourUserName <yourEmail>
+   sub   rsa2048 2021-01-17 [E] [expires: 2023-01-17]
+   ```
+
 4. 他人拿到了你部署之后的文件后, 需要进行校验, 校验过程需要用到你的公钥, 所以你需要将公钥上传到专门保存密钥的服务器, 以便他人
    可以获取公钥并验证签名 
     
