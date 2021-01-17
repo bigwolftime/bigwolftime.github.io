@@ -152,11 +152,13 @@ typically within 10 minutes, though updates to search.maven.org can take up to t
 1. 项目 License
 
    项目的许可证也是一个很重要的问题, 在为你的项目选择许可证之前, 必须仔细阅读并理解, 并知晓如何正确使用. 
+   
    关于如何选择 License 可以参考: [Choose an open source license](https://choosealicense.com/)
 
 2. 签名过程中出现 `mvn deploy occur: gpg: signing failed: Inappropriate ioctl for device`
 
    可参考[此文](https://my.oschina.net/ujjboy/blog/3023151)
+   
    在 shell 中执行: `export GPG_TTY=$(tty)`
 
 #### 参考
