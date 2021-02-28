@@ -133,6 +133,10 @@ license, scm, developers etc.)以及签名等项目.
 如何验证呢? 点击 `close` 后会自动开始验证, 可以在下方的 `Activity` 标签看到校验项及结果, 出现错误后会自动停止, 我们需要修复后重新部署,
 直到提示: close successful, 之后再点击 `Release` 按钮可以将状态变更为 `Release`.
 
+> 如下图所示, 已经成功 close, 并且通过了校验, 此时 Release 按钮变为可点击状态。
+
+![Staging](https://zonheng.net/67113191.png)
+
 完成这一步, 需要回到 sonatype 的 issue 下, 通知工作人员已完成.
 
 审核通过之后就会收到回复:
@@ -145,7 +149,7 @@ typically within 10 minutes, though updates to search.maven.org can take up to t
 今后的更新, 需要重复进行此步骤, 即 `mvn deploy - validate(close) - release` 过程
 
 
-完整的项目代码可以参考: [redefine](https://github.com/bigwolftime/redefine)
+**完整的项目代码可以参考: [redefine](https://github.com/bigwolftime/redefine)**
 
 #### 其他
 

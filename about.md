@@ -10,5 +10,11 @@ permalink: /about/
 * [JDK Notes](https://github.com/seaswalker/JDK)
 * [CS-Notes](https://github.com/CyC2018/CS-Notes)
 
+##### 扩展阅读
+
+* [文本相似度检查](http://yanyiwu.com/work/2014/01/30/simhash-shi-xian-xiang-jie.html)
+* [高性能短链设计](https://mp.weixin.qq.com/s/aoZz6NveoN3NIhXfYPts3Q)
+
+
 
 这是一个关于页面，请编辑about.md以介绍你的博客。
