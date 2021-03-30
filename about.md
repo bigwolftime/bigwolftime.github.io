@@ -18,10 +18,6 @@ permalink: /about/
 
 ##### blog 计划
 
-TCP 流量控制, 拥塞控制
+Redis pipeline
 
 LRU 缓存及其优化
-
-操作系统的任务调度策略
-
-这是一个关于页面，请编辑about.md以介绍你的博客。
