@@ -4,23 +4,11 @@ title: Redis pipeline
 date: 2021-04-03
 Author: bwt
 categories: Redis
-<<<<<<< HEAD
-tags: [Redis, pipeline]
-=======
 tags: [Redis, Jedis, pipeline]
->>>>>>> 8a1fe338b48aa87bf5c3c665d91ebf36b5e6220c
 comments: true
 toc: true
 ---
 
-<<<<<<< HEAD
-
-
-
-#### 参考
-
-[巧用 Redis pipeline 命令，解决真实的生产问题](https://mp.weixin.qq.com/s/54n1Q3_Zvyxr9Sj2Fqzhew)
-=======
 > 文中使用 Jedis 进行数据交互, 版本为 2.6.1
 
 #### 一. 使用场景
@@ -78,6 +66,33 @@ Server 执行完毕后, 将执行结果一次性地返回给客户端.
 1. Redis Server 要执行的命令较多, 增加客户端等待时间; 
 2. 网络带宽的瞬时占用增大, 甚至出现网络阻塞;
 3. Redis Server 执行完毕后, 答复数据会在内存中按顺序存储, 待剩余命令执行完毕后返回, 此逻辑可能会造成内存被大量占用.
+
+所以当要查询的 key 数据量较大时, 可以想办法将数据分割成 n 个小份, 分批通过 pipeline 查询. 例如：有一个数据量为 10w 的 uidList, 要
+根据每个 uid 查询出用户信息, 可尝试这样写:
+
+```java
+public List<String> getUserListByUid(List<Long> uidList) {
+    List<String> dataList = new ArrayList<>();
+    
+    // 使用 google common 包，将 uidList 分割成多个子 list, 每个子 list 最多 500 元素
+    for (List<Long> subList : Lists.partition(uidList, 500)) {
+        
+        // 遍历每个子 list, 查询用户信息
+        List<Response<String>> respList = new ArrayList<>();
+        for (long uid : subList) {
+            respList.add(pipeline.get("user_info_" + uid));
+        }
+        
+        // 同步 pipeline
+        pipeline.sync();
+        
+        // 将查询到的结果装入到 dataList 中
+        dataList.addAll(respList.stream().filter(Objects::nonNull).map(Response::get).collect(Collectors.toList()));
+    }
+     
+     return dataList;
+}
+```
 
 #### 二. Jedis pipeline 代码实现
 
@@ -141,4 +156,3 @@ pipeline.
 
 * [Using pipelining to speedup Redis queries](https://redis.io/topics/pipelining)
 * [巧用 Redis pipeline 命令，解决真实的生产问题](https://mp.weixin.qq.com/s/54n1Q3_Zvyxr9Sj2Fqzhew)
->>>>>>> 8a1fe338b48aa87bf5c3c665d91ebf36b5e6220c

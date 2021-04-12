@@ -263,4 +263,4 @@ Q1 中的 A,B, 而任务 C,D 在 A,B 运行完成前都没有调度机会.
 
 #### 四. 参考
 
-[《操作系统导论》 雷姆兹·H.阿帕希杜塞尔%20安德莉亚·C.阿帕希杜塞尔](https://weread.qq.com/web/reader/db8329d071cc7f70db8a479kc81322c012c81e728d9d180)
+[《操作系统导论》 雷姆兹·H.阿帕希杜塞尔 安德莉亚·C.阿帕希杜塞尔](https://weread.qq.com/web/reader/db8329d071cc7f70db8a479kc81322c012c81e728d9d180)

@@ -538,9 +538,9 @@ nav {
 // TOC
 
 .toc {
-  width: 240px;
+  width: 23%;
   height: 100%;
-  right: 10%;
+  right: 1%;
   position: fixed;
   z-index: 4;
   padding: 60px 20px 0 20px;
@@ -677,7 +677,10 @@ nav {
   }
 }
 
-
+.emoji {
+  display: inline;
+  vertical-align: text-top;
+}
 
 // Footer
 .wrapper-footer-desktop {
