@@ -31,6 +31,14 @@ body {
   width: 72%;
 }
 
+@media screen and (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+    padding: 0 20px;
+    width: 100%;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 2em;
   margin: 1em 0 16px;

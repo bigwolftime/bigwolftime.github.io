@@ -20,4 +20,8 @@ permalink: /about/
 
 Redis pipeline
 
-LRU 缓存及其优化
+NIO
+
+缓存浅析：LRU，LFU，TinyLFU，W-TinyLFU
+https://nan01ab.github.io/2018/04/TinyLFU.html
+https://zonheng.net/tiny_lfu_paper_1512.00727.pdf
