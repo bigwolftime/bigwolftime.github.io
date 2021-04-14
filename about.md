@@ -21,6 +21,7 @@ permalink: /about/
 * [美团针对Redis Rehash机制的探索和实践](https://tech.meituan.com/2018/07/27/redis-rehash-practice-optimization.html)
 * [Redis 高负载下的中断优化](https://tech.meituan.com/2018/03/16/redis-high-concurrency-optimization.html)
 * [CPU Cache Line伪共享问题的总结和分析](https://mp.weixin.qq.com/s/y1NSE5xdh8Nt5hlmK0E8Og)
+* [MySQL Online DDL 的改进与应用](https://www.cnblogs.com/xinysu/p/6732646.html)
 
 ##### blog 计划
 

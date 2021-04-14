@@ -14,6 +14,10 @@ layout: default
       {{ page.date | date: "%Y-%m-%d" }}
     </span>
 
+    <span class="word_count">
+      本文字数: {{ page.content | number_of_words }}
+    </span>
+
     <ul class="tag">
       {% for tag in page.tags %}
       <li>
