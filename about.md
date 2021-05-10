@@ -9,6 +9,7 @@ permalink: /about/
 * [后端工程师学习路线](https://github.com/xingshaocheng/architect-awesome)
 * [JDK Notes](https://github.com/seaswalker/JDK)
 * [CS-Notes](https://github.com/CyC2018/CS-Notes)
+* [每个程序员都应该知道的延迟数](https://github.com/donnemartin/system-design-primer/blob/master/README-zh-Hans.md#%E6%AF%8F%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%91%98%E9%83%BD%E5%BA%94%E8%AF%A5%E7%9F%A5%E9%81%93%E7%9A%84%E5%BB%B6%E8%BF%9F%E6%95%B0)
 
 ##### 扩展阅读
 
