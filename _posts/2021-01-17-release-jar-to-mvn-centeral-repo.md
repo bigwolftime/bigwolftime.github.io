@@ -11,6 +11,8 @@ toc: true
 
 本文将介绍将 Jar 包构建并发布到 Maven Central Repo 的过程.
 
+<!--break-->
+
 #### 一. 创建 sonatype 账号
 
 *已有可忽略此步骤*

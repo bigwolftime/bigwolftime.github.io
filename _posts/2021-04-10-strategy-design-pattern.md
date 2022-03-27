@@ -16,6 +16,8 @@ toc: true
 
 不同的奖品入账需要调用不同的服务, 那么在入账的逻辑中, 可能会有这样的代码:
 
+<!--break-->
+
 ```java
 public void reward(Reward reward) {
 

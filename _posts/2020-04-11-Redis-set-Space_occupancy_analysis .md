@@ -10,6 +10,8 @@ comments: true
 
 > Redis version 2.8.20 OS: 64bit
 
+<!--break-->
+
 #### 一
 Redis 中存储字符串的结构为 SDS(简单动态字符串), 其定义包括:
 
