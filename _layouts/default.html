@@ -17,11 +17,24 @@
     </div>
 
     {% include analytics.html %}
+
+    <label for="search-input"></label><input type="text" id="search-input" placeholder="Search blog posts..">
+    <ul id="results-container"></ul>
   </body>
 
   {% if page.toc==true %}
+
+  <script src="../script/jekyll-simple-search.js"></script>
+
   <script>
     document.getElementById("main").classList.add("withtoc");
+
+    var sjs = SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '/search.json'
+    });
+
   </script>
   {% endif %}
 
