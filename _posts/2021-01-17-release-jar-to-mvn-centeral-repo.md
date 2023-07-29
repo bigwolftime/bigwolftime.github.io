@@ -137,7 +137,7 @@ license, scm, developers etc.)以及签名等项目.
 
 > 如下图所示, 已经成功 close, 并且通过了校验, 此时 Release 按钮变为可点击状态。
 
-![Staging](https://zonheng.net/67113191.png)
+![Staging](https://zonheng.net/tech/67113191.png-original)
 
 完成这一步, 需要回到 sonatype 的 issue 下, 通知工作人员已完成.
 

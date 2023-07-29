@@ -114,7 +114,7 @@ start adbd
 > Android 设备开启"开发者选项", 进入开发者选项后找到"无线调试", 打开调试开关, 点击"使用配对码配对设备".
 > PC 端执行: `adb pair IP:port`, 然后输入设备上的配对码即可.
 
-![adb pair code](http://zonheng.net/tech/adb_pair_code.jpg-thumbnail)
+![adb pair code](https://zonheng.net/tech/adb_pair_code.jpg-thumbnail)
 
 
 ### 参考

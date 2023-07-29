@@ -32,7 +32,7 @@ public List<User> getUserInfoByUids(List<Long> uidList) {
 
 使用这种方式调用, 其流程如图:
 
-![批量操作不使用 pipeline 的交互](https://zonheng.net/redis_command_one_by_one.png)
+![批量操作不使用 pipeline 的交互](https://zonheng.net/tech/redis_command_one_by_one.png-original)
 
 这样做有以下问题:
 

@@ -131,7 +131,7 @@ public void reward(Reward reward) {
 
 至此, 策略模式的封装已经完成, 类之间的关系如图:
 
-![UML 类图](https://zonheng.net/strategy_design_pattern.png)
+![UML 类图](https://zonheng.net/tech/strategy_design_pattern.png-original)
 
 我们发现, 在入账时还有一些 if...else 判断, 还能如何优化呢?
 
