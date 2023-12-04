@@ -14,7 +14,7 @@ toc: true
 
 顾名思义, `透明代理`即让 app 感觉不到自己正在被代理(此种方式仍然需要设备拥有 root 权限).
 
-有兴趣可以阅读之前的基础文章: [2020-03-06-Android-SSL-packet.md](./2020-03-06-Android-SSL-packet.md)
+有兴趣可以阅读之前的基础文章: [2020-03-06-Android-SSL-packet.md](../Android-SSL-packet)
 
 <!--break-->
 
