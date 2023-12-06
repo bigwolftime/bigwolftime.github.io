@@ -121,16 +121,16 @@ toc: true
     
     `gpg --keyserver hkp://pool.sks-keyservers.net --send-keys YourPublicKey`, 
    
-    此处的公钥服务器还可以填写其他 server: `hkp://keys.gnupg.net`
+    此处的公钥服务器还可以填写其他 server: `hkp://keys.gnupg.net`, `keyserver.ubuntu.com`
 5. 可以使用 `gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys YourPublicKey` 查看已经上传成功的公钥
 6. 在项目的 pom.xml 文件中也需要引入 `maven-gpg-plugin` 插件, 在每次打包过程中将文件签名, 可参考
    [此项目的pom.xml](https://github.com/bigwolftime/redefine/blob/main/pom.xml).
 
 #### 六. 部署项目
 
-执行 deploy 命令, 执行完毕后, 打开 [Nexus Repo Manager](https://oss.sonatype.org/) 并登录账号后, 点击 `stagingRepositories`, 
-可以看到刚刚部署的项目, 我们需要将其改为 `Release` 状态, 不过在此之前需要验证 `pom.xml` 的配置(ex: 例如: name, description, 
-license, scm, developers etc.)以及签名等项目. 
+执行 deploy 命令: `mvn deploy -P signing-deploy`, 同时对 deploy 的文件签名, 执行完毕后, 
+打开 [Nexus Repo Manager](https://oss.sonatype.org/) 并登录账号后, 点击 `stagingRepositories`, 可以看到刚刚部署的项目, 我们需要
+将其改为 `Release` 状态, 不过在此之前需要验证 `pom.xml` 的配置(ex: 例如: name, description, license, scm, developers etc.)以及签名等项目. 
 
 如何验证呢? 点击 `close` 后会自动开始验证, 可以在下方的 `Activity` 标签看到校验项及结果, 出现错误后会自动停止, 我们需要修复后重新部署,
 直到提示: close successful, 之后再点击 `Release` 按钮可以将状态变更为 `Release`.
@@ -163,9 +163,14 @@ typically within 10 minutes, though updates to search.maven.org can take up to t
 
 2. 签名过程中出现 `mvn deploy occur: gpg: signing failed: Inappropriate ioctl for device`
 
-   可参考[此文](https://my.oschina.net/ujjboy/blog/3023151)
+   可参考[此文](https://my.oschina.net/ujjboy/blog/3023151), 原因是在 deploy 过程中需要输入生成密钥时的密码, 但当前可能不支持.
    
    在 shell 中执行: `export GPG_TTY=$(tty)`
+
+3. 提示: `gpg2: command not found`
+
+[参考此处](https://stackoverflow.com/questions/54391696/gpg2-command-not-found-even-when-gpg2-is-installed-on-mac-trying-to-install-rv)
+
 
 #### 参考
 
