@@ -67,6 +67,21 @@ verity cannot be disabled/enabled - USER build
 
 如果使用了 Magisk root 方案, 可以通过安装 Magisk 模块: [Magical Overlayfs](https://github.com/HuskyDG/magic_overlayfs/)达到目的.
 
+#### Android 14
+
+截止目前(2023.12), Magical Overlayfs 对于 Android 14 的支持还不是很好(手持 Xiaomi 13 Ultra, HyperOS, Android14, 在安装 Magical 
+Overlayfs 时会报错: `Module Setup ext4 image failed, abort`, 也已经有了对应的 [Issue](https://github.com/HuskyDG/magic_overlayfs/issues/52))
+, 目前是待解决状态.
+
+且自 Android14 版本起, 系统证书目录不再是: `/system/etc/security/cacerts/`, 而是 `/apex/com.android.conscrypt/cacerts/`, 后续
+在推送证书时需要注意. 
+若 system 分区无法达到挂在读写的目的, 则可以参考 [adguardcert](https://github.com/AdguardTeam/adguardcert) 项目, 其原理是创建一个
+临时目录, 然后通过 `mount --bind 临时目录 /apex/com.android.conscrypt/cacerts/` 命令, 将临时目录和系统证书目录绑定挂载, 达到的作用是:
+源目录的内容会实时同步到目标目录, 对源目录的任何修改(增删改文件)都会反映到目标目录, 看起来就像两个目录指向同一个文件系统, 但实际上源目录和目标
+目录还是两个独立的目录,修改任一目录不会影响另一个目录的内容, 取消挂载后后两个目录互不影响.
+
+可以将 `module/post-fs-data.sh` 文件中的 AG_CERT_HASH 变量改为要推送到系统证书目录的 hash, 调整完后重新压缩, 然后进入 Magisk 安装, 重
+启后即可在 `/apex/com.android.conscrypt/cacerts/` 目录下看到自定义的证书 hash. 若本步骤已经完成, 则下面的操作可以略过~
 
 如果这些准备完成, 可以看下一步.
 
@@ -124,3 +139,4 @@ start adbd
 * [adb push 失败提示 ‘Read-only file system](https://www.jianshu.com/p/eca9a8ad4996)
 * [SDK Platform Tools 版本说明](https://developer.android.com/studio/releases/platform-tools?hl=zh-cn)
 * [Magical Overlayfs](https://github.com/HuskyDG/magic_overlayfs/)
+* [adguardcert](https://github.com/AdguardTeam/adguardcert)

@@ -10,8 +10,10 @@
   <script src="{{ site.baseurl }}/script/gitalk.min.js"></script>
   <script src="{{ site.baseurl }}/script/feather.min.js"></script>
   <script src="{{ site.baseurl }}/script/jekyll-simple-search.js"></script>
-  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-  </script>
+  <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       tex2jax: {
@@ -19,6 +21,35 @@
         inlineMath: [['$','$']]
       }
     });
+  </script>
+
+  <script>
+    // 获取所有 <p> 标签内的 <img> 标签
+    var imgs = document.querySelectorAll("p img");
+    // 遍历每一个 <img> 标签
+    for (var i = 0; i < imgs.length; i++) {
+      // 获取当前 <img> 标签的 src 属性
+      var src = imgs[i].src;
+      // 创建一个 <a> 标签
+      var a = document.createElement("a");
+      // 设置 <a> 标签的 id 属性为 yourid
+      a.setAttribute("data-fancybox", "");
+      // 设置 <a> 标签的 href 属性为 src
+      a.href = src;
+      // 将当前 <img> 标签作为 <a> 标签的子节点
+      a.appendChild(imgs[i]);
+      // 将 <a> 标签插入到 <img> 标签的原位置
+      imgs[i].parentNode.insertBefore(a, imgs[i]);
+    }
+
+    // 使用 fancybox 插件
+    Fancybox.bind("[data-fancybox]", {
+      // Your custom options
+    });
+    /*document.getElementById("yourid").fancybox({
+      openEffect: "elastic",
+      closeEffect: "elastic",
+    });*/
   </script>
 
   <script>

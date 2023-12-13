@@ -21,7 +21,7 @@ toc: true
 
 #### 二. 创建 Issue
 
-在 [https://issue.sonatype.org](https://issue.sonatype.org) 网页中, 点击上方菜单的 `Create`, 填写要发布项目的主要信息:
+在 [https://issues.sonatype.org](https://issues.sonatype.org) 网页中, 点击上方菜单的 `Create`, 填写要发布项目的主要信息:
 
 * Project: 选择 `Community Support - Open Source Project Repository Hosting (OSSRH)`;
 * Issue Type: 可以选择 `New Project`;
