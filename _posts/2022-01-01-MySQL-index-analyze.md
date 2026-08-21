@@ -52,7 +52,7 @@ MySQL InnoDB存储引擎，实现的是基于多版本的并发控制协议—�
 
 为什么将 插入/更新/删除 操作，都归为当前读？可以看看下面这个 更新 操作，在数据库中的执行流程：
 
-![mysql-update](https://zonheng.net/tech/mysql-upate.jpg-thumbnail)
+![mysql-update](https://img.zonheng.net/tech/mysql-upate.jpg-thumbnail)
 
 从图中，可以看到，一个Update操作的具体流程。当Update SQL被发给MySQL后，MySQL Server会根据where条件，读取第一条满足条件的记录，然后
 InnoDB引擎会将第一条记录返回，并加锁 (current read)。待MySQL Server收到这条加锁的记录之后，会再发起一个Update请求，更新这条记录。
@@ -73,7 +73,7 @@ InnoDB存储引擎的数据组织方式，是聚簇索引表：完整的记录�
 传统RDBMS加锁的一个原则，就是2PL (二阶段锁)：[Two-Phase Locking](https://en.wikipedia.org/wiki/Two-phase_locking)。相对而言，
 2PL比较容易理解，说的是锁操作分为两个阶段：加锁阶段与解锁阶段，并且保证加锁阶段与解锁阶段不相交。下面，仍旧以MySQL为例，来简单看看2PL在MySQL中的实现。
 
-![MySQL 2Phase Lock](https://zonheng.net/tech/mysql-2phase-lock.jpg-thumbnail)
+![MySQL 2Phase Lock](https://img.zonheng.net/tech/mysql-2phase-lock.jpg-thumbnail)
 
 从上图可以看出，2PL就是将加锁/解锁分为两个完全不相交的阶段。加锁阶段：只加锁，不放锁。解锁阶段：只放锁，不加锁。
 
@@ -156,7 +156,7 @@ Serializable隔离级别下，读写冲突，因此并发度急剧下降，在My
 这个组合，是最简单，最容易分析的组合。id是主键，Read Committed隔离级别，给定SQL：delete from t1 where id = 10; 只需要将主键上，
 id = 10的记录加上X锁即可。如下图所示：
 
-![MySQL-del-rc](https://zonheng.net/tech/mysql-del-rc.jpg-thumbnail)
+![MySQL-del-rc](https://img.zonheng.net/tech/mysql-del-rc.jpg-thumbnail)
 
 结论：id是主键时，此SQL只需要在id=10这条记录上加X锁即可。
 
@@ -164,7 +164,7 @@ id = 10的记录加上X锁即可。如下图所示：
 
 这个组合，id不是主键，而是一个Unique的二级索引键值。那么在RC隔离级别下，delete from t1 where id = 10; 需要加什么锁呢？见下图：
 
-![MysQL-del-uni-rc](https://zonheng.net/tech/mysql-del-uni-rc.jpg-thumbnail)
+![MysQL-del-uni-rc](https://img.zonheng.net/tech/mysql-del-uni-rc.jpg-thumbnail)
 
 此组合中，id是unique索引，而主键是name列。此时，加锁的情况由于组合一有所不同。由于id是unique索引，因此delete语句会选择走id列的索引进行
 where条件的过滤，在找到id=10的记录后，首先会将unique索引上的id=10索引记录加上X锁，同时，会根据读取到的name列，回主键索引(聚簇索引)，
@@ -180,7 +180,7 @@ where条件的过滤，在找到id=10的记录后，首先会将unique索引上�
 相对于组合一、二，组合三又发生了变化，隔离级别仍旧是RC不变，但是id列上的约束又降低了，id列不再唯一，只有一个普通的索引。假设
 `delete from t1 where id = 10; `语句，仍旧选择id列上的索引进行过滤where条件，那么此时会持有哪些锁？同样见下图：
 
-![MySQL-del-idx-rc](https://zonheng.net/tech/msyql-del-idx-rc.jpg-thumbnail)
+![MySQL-del-idx-rc](https://img.zonheng.net/tech/msyql-del-idx-rc.jpg-thumbnail)
 
 根据此图，可以看到，首先，id列索引上，满足id = 10查询条件的记录，均已加锁。同时，这些记录对应的主键索引上的记录也都加上了锁。与组合二唯一的
 区别在于，组合二最多只有一个满足等值查询的记录，而组合三会将所有满足查询条件的记录都加锁。
@@ -193,7 +193,7 @@ where条件的过滤，在找到id=10的记录后，首先会将unique索引上�
 对应于这个组合，SQL会加什么锁？或者是换句话说，全表扫描时，会加什么锁？这个答案也有很多：有人说会在表上加X锁；有人说会将聚簇索引上，选择出来的
 id = 10;的记录加上X锁。那么实际情况呢？请看下图：
 
-![MySQL-del-no-idx-rc](https://zonheng.net/tech/mysql-del-no-idx-rc.jpg-thumbnail)
+![MySQL-del-no-idx-rc](https://img.zonheng.net/tech/mysql-del-no-idx-rc.jpg-thumbnail)
 
 由于id列上没有索引，因此只能走聚簇索引，进行全部扫描。从图中可以看到，满足删除条件的记录有两条，但是，聚簇索引上所有的记录，都被加上了X锁。
 无论记录是否满足条件，全部被加上X锁。既不是加表锁，也不是在满足条件的记录上加行锁。
@@ -226,7 +226,7 @@ id = 10;的记录加上X锁。那么实际情况呢？请看下图：
 组合七，Repeatable Read隔离级别，id上有一个非唯一索引，执行delete from t1 where id = 10; 假设选择id列上的索引进行条件过滤，最后的
 加锁行为，是怎么样的呢？同样看下面这幅图：
 
-![MySQL-del-idx-rr](https://zonheng.net/tech/mysql-del-idx-rr.jpg-thumbnail)
+![MySQL-del-idx-rr](https://img.zonheng.net/tech/mysql-del-idx-rr.jpg-thumbnail)
 
 此图，相对于组合三：[id列上非唯一锁，Read Committed]看似相同，其实却有很大的区别。最大的区别在于，这幅图中多了一个GAP锁，而且GAP锁看起来
 也不是加在记录上的，倒像是加载两条记录之间的位置，GAP锁有何用？
@@ -262,7 +262,7 @@ id是unique键，都能够保证唯一性。一个等值查询，最多只能返
 组合八，Repeatable Read隔离级别下的最后一种情况，id列上没有索引。此时SQL：delete from t1 where id = 10; 没有其他的路径可以选择，只能
 进行全表扫描。最终的加锁情况，如下图所示：
 
-![MySQL-del-rr](https://zonheng.net/tech/mysql-del-rr.jpg-thumbnail)
+![MySQL-del-rr](https://img.zonheng.net/tech/mysql-del-rr.jpg-thumbnail)
 
 如图，这是一个很恐怖的现象。首先，聚簇索引上的所有记录，都被加上了X锁。其次，聚簇索引每条记录间的间隙(GAP)，也同时被加上了GAP锁。这个示例表，
 只有6条记录，一共需要6个记录锁，7个GAP锁。试想，如果表上有1000万条记录呢？
@@ -295,7 +295,7 @@ Serializable隔离级别，SQL1会加读锁，也就是说快照读不复存在�
 写到这里，其实MySQL的加锁实现也已经介绍的八八九九。只要将本文上面的分析思路，大部分的SQL，都能分析出其会加哪些锁。而这里，再来看一个稍微复杂点
 的SQL，用于说明MySQL加锁的另外一个逻辑。SQL用例如下：
 
-![MySQL-complex](https://zonheng.net/tech/mysql-complex.jpg-thumbnail)
+![MySQL-complex](https://img.zonheng.net/tech/mysql-complex.jpg-thumbnail)
 
 如图中的SQL，会加什么锁？假定在Repeatable Read隔离级别下 (Read Committed隔离级别下的加锁情况，留给读者分析。)，同时，假设SQL走的是
 idx_t1_pu索引。
@@ -309,7 +309,7 @@ SQL中的where条件，在数据库中提取与应用浅析 。在这里，我�
 
 在分析出SQL where条件的构成之后，再来看看这条SQL的加锁情况 (RR隔离级别)，如下图所示：
 
-![MySQL-lock-rr](https://zonheng.net/tech/mysql-lock-rr.jpg-thumbnail)
+![MySQL-lock-rr](https://img.zonheng.net/tech/mysql-lock-rr.jpg-thumbnail)
 
 从图中可以看出，在Repeatable Read隔离级别下，由Index Key所确定的范围，被加上了GAP锁；Index Filter锁给定的条件 (userid = ‘hdc’)何时过滤，
 视MySQL的版本而定，在MySQL 5.6版本之前，不支持[Index Condition Pushdown(ICP)](https://dev.mysql.com/doc/refman/8.0/en/index-condition-pushdown-optimization.html)
@@ -330,9 +330,9 @@ SQL中的where条件，在数据库中提取与应用浅析 。在这里，我�
 
 下面，来看看两个死锁的例子 (一个是两个Session的两条SQL产生死锁；另一个是两个Session的一条SQL，产生死锁)：
 
-![MySQL-dead-lock-1](https://zonheng.net/tech/mysql-dead-lock-1.jpg-thumbnail)
+![MySQL-dead-lock-1](https://img.zonheng.net/tech/mysql-dead-lock-1.jpg-thumbnail)
 
-![MySQL-dead-lock-2](https://zonheng.net/tech/mysql-dead-lock-2.jpg-thumbnail)
+![MySQL-dead-lock-2](https://img.zonheng.net/tech/mysql-dead-lock-2.jpg-thumbnail)
 
 上面的两个死锁用例。第一个非常好理解，也是最常见的死锁，每个事务执行两条SQL，分别持有了一把锁，然后加另一把锁，产生死锁。
 

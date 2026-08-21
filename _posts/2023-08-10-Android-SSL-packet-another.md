@@ -60,25 +60,25 @@ DNAT       tcp  --  anywhere             anywhere             tcp dpt:http to:19
 
 首先创建 443 端口的监听策略:
 
-![burp_443](https://zonheng.net/tech/burp_443.png-thumbnail)
+![burp_443](https://img.zonheng.net/tech/burp_443.png-thumbnail)
 
-![burp_443_bind](https://zonheng.net/tech/burp_443_bind.png-thumbnail)
+![burp_443_bind](https://img.zonheng.net/tech/burp_443_bind.png-thumbnail)
 
 然后创建 80 端口的监听策略:
 
-![burp_80](https://zonheng.net/tech/burp_80.png-thumbnail)
+![burp_80](https://img.zonheng.net/tech/burp_80.png-thumbnail)
 
-![burp_80_bind](https://zonheng.net/tech/burp_80_bind.png-thumbnail)
+![burp_80_bind](https://img.zonheng.net/tech/burp_80_bind.png-thumbnail)
 
 最终创建好的监听策略如图:
 
-![burp_bind](https://zonheng.net/tech/burp_bind.png-thumbnail)
+![burp_bind](https://img.zonheng.net/tech/burp_bind.png-thumbnail)
 
 ### 四. 实践
 
 以某影视 app 为例, 可以看到请求详情:
 
-![实践](https://zonheng.net/tech/burp_catch.png-thumbnail)
+![实践](https://img.zonheng.net/tech/burp_catch.png-thumbnail)
 
 抓包完成后需要将 iptables 配置还原, 否则断开 Wi-Fi 连接或者关闭代理节点后, Android 设备无法访问网络, 删除的命令:
 
